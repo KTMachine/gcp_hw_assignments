@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 # this just is to keep those next two commands readable. $META and $HEADER get replaced with these lines
 META="http://metadata.google.internal/computeMetadata/v1/instance"
 HEADER="Metadata-Flavor: Google"
@@ -8,8 +10,9 @@ HEADER="Metadata-Flavor: Google"
 NAME=$(curl -H "$HEADER" "$META/name")
 IP=$(curl -H "$HEADER" "$META/network-interfaces/0/ip")
 
-# have the package manager grab the apache2 webserver 
-dnf install -y httpd
+# Debian image uses apt, not dnf.
+apt-get update -y
+apt-get install -y apache2
 
 # write our html file to the default location apache2 looks for
 cat > /var/www/html/index.html << EOF
@@ -29,4 +32,4 @@ cat > /var/www/html/index.html << EOF
 EOF
 
 # turn on apache2 service and make it turn on after the VM reboots too
-systemctl enable --now httpd
+systemctl enable --now apache2
