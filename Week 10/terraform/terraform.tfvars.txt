@@ -1,7 +1,7 @@
 # Defaults that are used for Variables that are not set 
 # in terraform.tfvars or environment variables
 
-project_id = "invictus-65"
+project_id = ""
 region     = "us-central1"
 zone       = "us-central1-a"
 
