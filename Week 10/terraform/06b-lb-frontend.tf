@@ -23,7 +23,6 @@ resource "google_compute_target_http_proxy" "application_lb" {
 }
 
 
-
 resource "google_compute_url_map" "lb" {
   name = "lb-url-map"
 

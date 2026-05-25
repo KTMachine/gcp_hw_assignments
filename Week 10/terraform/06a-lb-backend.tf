@@ -25,7 +25,7 @@ resource "google_compute_backend_service" "lb" {
   port_name = "webserver"
 
   backend {
-    group           = google_compute_region_instance_group_manager.main.instance_group
+    group           = google_compute_region_instance_group_manager.app.instance_group
     capacity_scaler = 1.0
     balancing_mode  = "UTILIZATION"
   }
